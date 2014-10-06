@@ -4,7 +4,7 @@ module ShibuyaRecord
       #
       # format, greater_than, less_than, greater_than_or_equal_to
       # less_than_or_equal_to, equal_to
-      def initialize(options)
+      def initialize(options = {})
         @options = options
       end
 

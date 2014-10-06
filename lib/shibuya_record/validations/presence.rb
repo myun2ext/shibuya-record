@@ -1,8 +1,8 @@
 module ShibuyaRecord
   module Validations
     class Presence
-      def self.valid?(value)
-        if value == nil || value == [] || value == {}
+      def valid?(value)
+        if value == nil || value == [] || value == {} || value == ""
           false
         else
           true
