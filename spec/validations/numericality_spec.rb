@@ -51,5 +51,31 @@ describe ShibuyaRecord::Validations::Numericality do
       it { expect(validator.valid? "-5.6a").to eq false }
       it { expect(validator.valid? "a4").to eq false }
     end
+
+    context "greater than or equal to" do
+      let(:option) { { :greater_than_or_equal_to => 3 } }
+
+      it { expect(validator.valid? nil).to eq false }
+      it { expect(validator.valid? []).to eq false }
+      it { expect(validator.valid?({})).to eq false }
+      it { expect(validator.valid? "").to eq false }
+
+      it { expect(validator.valid? 0).to eq false }
+      it { expect(validator.valid? 3).to eq true }
+      it { expect(validator.valid? 6).to eq true }
+      it { expect(validator.valid? 4.6).to eq true }
+      it { expect(validator.valid? 1.6).to eq false }
+      it { expect(validator.valid? "3").to eq true }
+      it { expect(validator.valid? "6").to eq true }
+      it { expect(validator.valid? "3.0").to eq true }
+      it { expect(validator.valid? "5.6").to eq true }
+      it { expect(validator.valid? -3).to eq false }
+      it { expect(validator.valid? -4.6).to eq false }
+      it { expect(validator.valid? "-3").to eq false }
+      it { expect(validator.valid? "-5.6").to eq false }
+
+      it { expect(validator.valid? "-5.6a").to eq false }
+      it { expect(validator.valid? "a4").to eq false }
+    end
   end
 end
