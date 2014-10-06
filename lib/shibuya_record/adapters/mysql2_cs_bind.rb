@@ -12,6 +12,10 @@ module ShibuyaRecord
       def self.create_connection(params)
         Mysql2::Client.new(params)
       end
+
+      def query(query_string, *params)
+        connection.xquery(query_string, params)
+      end
     end
   end
 end
