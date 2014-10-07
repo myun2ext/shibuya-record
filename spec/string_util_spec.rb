@@ -19,6 +19,11 @@ describe ShibuyaRecord::StringUtil do
       it { expect(plural).to eq "cities" }
     end
 
+    context "-y string (not consonant)" do
+      let(:singular) { "day" }
+      it { expect(plural).to eq "days" }
+    end
+
     context "-x string" do
       let(:singular) { "mix" }
       it { expect(plural).to eq "mixes" }

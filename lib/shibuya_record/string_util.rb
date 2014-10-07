@@ -15,6 +15,8 @@ module ShibuyaRecord
       case last_char
       when 's', 'x'
         return s + 'es'
+      when 'f'
+        return s[0..-2] + "ves"
       when 'y'
         if second_last =~ /[^aiueo]/
           return s[0..-2] + "ies"
@@ -25,6 +27,8 @@ module ShibuyaRecord
       case last_two_char
       when 'sh', 'ch'
         return s + 'es'
+      when 'fe'
+        return s[0..-2] + "ves"
       end
 
       s + 's'
