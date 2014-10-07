@@ -4,7 +4,7 @@ module ShibuyaRecord
       attr_reader :query, :values
 
       def initialize(conditions)
-        @conditions
+        @conditions = conditions
       end
 
       def generate
