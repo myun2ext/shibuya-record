@@ -18,10 +18,19 @@ module ShibuyaRecord
 
       def self.conditions(conditions)
         values = []
+
         condition_list = conditions.map do |key, value|
-          values << value
-          "#{key} = ?"
+          if value.nil?
+            "#{key} IS NULL"
+          elsif value == { not: nil }
+            "#{key} IS NOT NULL"
+          elsif value.kind_of? Hash
+          else
+            values << value
+            "#{key} = ?"
+          end
         end
+
         query = condition_list.join(" AND ")
         [query, values]
       end
