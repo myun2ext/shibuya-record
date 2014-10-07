@@ -1,8 +1,10 @@
 require 'shibuya_record/declaration'
+require 'shibuya_record/table_name'
 
 module ShibuyaRecord
   class Base
     extend ShibuyaRecord::Declaration
+    extend ShibuyaRecord::TableName
 
     def initialize(*params)
       params = params.first
