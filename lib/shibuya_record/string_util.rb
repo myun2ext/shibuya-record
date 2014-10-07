@@ -1,10 +1,9 @@
 module ShibuyaRecord
   module StringUtil
     def self.underscore(s)
-      s.gsub(/::/, '/').
-        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+      s.gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
         gsub(/([a-z\d])([A-Z])/,'\1_\2').
-        tr("-", "_").
+        gsub(/[\s-]/, "_").
         downcase
     end
 

@@ -2,9 +2,17 @@ require 'shibuya_record/string_util'
 
 describe ShibuyaRecord::StringUtil do
   describe ".underscore" do
-    let(:camelized) { "HogeHuga" }
-    subject(:underscore) { ShibuyaRecord::StringUtil.underscore(camelized) }
-    it { expect(underscore).to eq "hoge_huga" }
+    context "camelized" do
+      let(:camelized) { "HogeHuga" }
+      subject(:underscore) { ShibuyaRecord::StringUtil.underscore(camelized) }
+      it { expect(underscore).to eq "hoge_huga" }
+    end
+
+    context "space included" do
+      let(:camelized) { "Hey! you are\tnice.\r\n" }
+      subject(:underscore) { ShibuyaRecord::StringUtil.underscore(camelized) }
+      it { expect(underscore).to eq "hey!_you_are_nice.__" }
+    end
   end
 
   describe ".pluralize" do
