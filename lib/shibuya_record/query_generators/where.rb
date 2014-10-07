@@ -32,6 +32,11 @@ module ShibuyaRecord
 
             values << value
             "#{key} #{op} ?"
+
+          elsif value.kind_of? Range
+            values << value.begin
+            values << value.end
+            "#{key} BETWEEN ? AND ?"
           else
             values << value
             "#{key} = ?"

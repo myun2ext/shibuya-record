@@ -12,4 +12,11 @@ describe ShibuyaRecord::QueryGenerators::Where do
          " WHERE huga = ? AND hoge = ? AND foo IS NULL AND bar IS NOT NULL AND piyo > ?" }
     it { expect(values).to eq [3, "XYZ", 8] }
   end
+
+  context "between" do
+    let(:conditions) { { huga: 3..9 } }
+    it { expect(query_string).to eq \
+         " WHERE huga BETWEEN ? AND ?" }
+    it { expect(values).to eq [3, 9] }
+  end
 end
