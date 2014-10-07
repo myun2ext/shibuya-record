@@ -10,12 +10,23 @@ module ShibuyaRecord
 
     def self.pluralize(s)
       last_char = s[-1]
-      if last_char == 'i'
-        return s[0..-2] + "es"
+      second_last = s[-2]
+
+      case last_char
+      when 's', 'x'
+        return s + 'es'
+      when 'y'
+        if second_last =~ /[^aiueo]/
+          return s[0..-2] + "ies"
+        end
       end
-      if last_char == 'e'
+
+      last_two_char = s[-2..-1]
+      case last_two_char
+      when 'sh', 'ch'
         return s + 'es'
       end
+
       s + 's'
     end
   end
