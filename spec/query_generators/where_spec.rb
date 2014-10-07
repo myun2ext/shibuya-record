@@ -7,9 +7,9 @@ describe ShibuyaRecord::QueryGenerators::Where do
   let(:values) { where[1] }
 
   context "conditions" do
-    let(:conditions) { { huga: 3, hoge: "XYZ", foo: nil, bar: { not: nil } } }
+    let(:conditions) { { huga: 3, hoge: "XYZ", foo: nil, bar: { not: nil }, piyo: { gt: 8 } } }
     it { expect(query_string).to eq \
-         " WHERE huga = ? AND hoge = ? AND foo IS NULL AND bar IS NOT NULL" }
-    it { expect(values).to eq [3, "XYZ"] }
+         " WHERE huga = ? AND hoge = ? AND foo IS NULL AND bar IS NOT NULL AND piyo > ?" }
+    it { expect(values).to eq [3, "XYZ", 8] }
   end
 end
