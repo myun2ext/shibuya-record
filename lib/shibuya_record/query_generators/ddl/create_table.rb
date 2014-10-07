@@ -24,7 +24,7 @@ module ShibuyaRecord
 
             s = "#{name} #{type}"
             s += "(#{length})" if length
-            s += " " + column[:options] if column[:options]
+            s += " " + option_string(column)
             s
           }.join(", ") + ")"
         end
@@ -36,6 +36,16 @@ module ShibuyaRecord
           else
             type.upcase
           end
+        end
+
+        private
+        def self.option_string(options)
+          #options.map do |option|
+          s = ""
+          s += "AUTO_INCREMENT " if options[:auto_increment]
+          s += "NOT NULL " if options[:not_null]
+          s += "DEFAULT #{options[:default]} " if options[:default]
+          s
         end
       end
     end

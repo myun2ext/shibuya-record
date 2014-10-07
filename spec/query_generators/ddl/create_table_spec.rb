@@ -9,7 +9,7 @@ describe ShibuyaRecord::QueryGenerators::Ddl::CreateTable do
       {
         table_name: :users,
         columns: [
-          { name: :id, type: :int },
+          { name: :id, type: :int, auto_increment: true },
           { name: :name, type: :string, not_null: true },
           { name: :hoge, type: :string, length: 20 },
           { name: :huga, type: :char, length: 20 },
@@ -20,10 +20,10 @@ describe ShibuyaRecord::QueryGenerators::Ddl::CreateTable do
     let(:expected_query) do
       s = <<-EOS
          CREATE TABLE users (
-           id INT, 
-           name VARCHAR, 
-           hoge VARCHAR(20), 
-           huga CHAR(20)
+           id INT AUTO_INCREMENT , 
+           name VARCHAR NOT NULL , 
+           hoge VARCHAR(20) , 
+           huga CHAR(20) 
          )
       EOS
       s.gsub!(/\A\s+/, "")
