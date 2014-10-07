@@ -12,15 +12,17 @@ module ShibuyaRecord
       end
 
       def self.generate(conditions)
-        query = " WHERE "
-        values = []
+        query, values = Where.conditions(conditions)
+        [" WHERE "+ query, values]
+      end
 
+      def self.conditions(conditions)
+        values = []
         condition_list = conditions.map do |key, value|
           values << value
           "#{key} = ?"
         end
-
-        query += condition_list.join(" AND ")
+        query = condition_list.join(" AND ")
         [query, values]
       end
     end
