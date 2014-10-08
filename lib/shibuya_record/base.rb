@@ -1,10 +1,12 @@
-require 'shibuya_record/declaration'
+require 'shibuya_record/attributes'
 require 'shibuya_record/table_name'
+require 'shibuya_record/query'
 
 module ShibuyaRecord
   class Base
-    extend ShibuyaRecord::Declaration
+    extend ShibuyaRecord::Attributes
     extend ShibuyaRecord::TableName
+    include ShibuyaRecord::Query
 
     def initialize(*params)
       params = params.first
@@ -14,6 +16,14 @@ module ShibuyaRecord
           self.send(attribute.to_s + "=", value)
         end
       end
+    end
+
+    def table_name
+      ShibuyaRecord::Base.table_name
+    end
+
+    def db_connection
+      @db_connection
     end
   end
 end

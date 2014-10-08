@@ -1,6 +1,6 @@
 require 'shibuya_record/base'
 
-describe ShibuyaRecord::Declaration do
+describe ShibuyaRecord::Attributes do
   before do
     class MockClass < ShibuyaRecord::Base
       attributes :hoge, :huga

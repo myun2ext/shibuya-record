@@ -1,5 +1,5 @@
 module ShibuyaRecord
-  module Declaration
+  module Attributes
     def attributes(*list)
       if list
         @attributes = list
