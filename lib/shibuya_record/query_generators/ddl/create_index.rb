@@ -20,6 +20,10 @@ module ShibuyaRecord
           query += "INDEX #{index_name(params)} ON #{table_name} (#{columns})"
         end
 
+        def self.unique(params)
+          generate(params.merge({ unique: true }))
+        end
+
         def self.index_name(params)
           table_name = params[:table_name] || params[:table]
           "index_#{table_name}_on_" + params[:columns].join("_and_")
