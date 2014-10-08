@@ -41,10 +41,10 @@ module ShibuyaRecord
           generate(params.merge({ table_name: table_name, action: "ADD", target: "COLUMN" }))
         end
 
-        def self.drop_column(table_name, params)
-          generate(params.merge({ table_name: table_name, action: "DROP", target: "COLUMN" }))
+        def self.drop_column(table_name, column_name)
+          generate(table_name: table_name, action: "DROP", target: "COLUMN", column: column_name)
         end
-        def self.remove_column(table_name, params); drop_column(table_name, params); end
+        def self.remove_column(table_name, column_name); drop_column(table_name, column_name); end
 
         def self.change_column(table_name, params)
           generate(params.merge({ table_name: table_name, action: "CHANGE", target: "COLUMN" }))

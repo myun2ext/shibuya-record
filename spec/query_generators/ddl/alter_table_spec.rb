@@ -15,8 +15,8 @@ describe ShibuyaRecord::QueryGenerators::Ddl::AlterTable do
       "ALTER TABLE hoge RENAME COLUMN foo TO bar" }
   end
 
-  context "Drop column" do
-    let(:alter_table_query) { generator.drop_column(:hoge, column_name: :foo) }
+  context "Remove column" do
+    let(:alter_table_query) { generator.remove_column(:hoge, :foo) }
     it { expect(alter_table_query).to eq \
       "ALTER TABLE hoge DROP COLUMN foo" }
   end
