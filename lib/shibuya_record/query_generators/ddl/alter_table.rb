@@ -20,8 +20,18 @@ module ShibuyaRecord
 
           if target == "COLUMN"
             column = params[:column] || params[:column_name]
-            type = params[:column_type] || params[:type]
-            definition = "#{column} #{type}"
+
+            case action
+            when "ADD", "CHANGE"
+              type = params[:column_type] || params[:type]
+              definition = "#{column} #{type}"
+            when "REMOVE"
+              definition = "#{column}"
+            when "RENAME"
+              from_column = params[:from_column] || params[:from_column_name]
+              to_column = params[:to_column] || params[:to_column_name]
+              definition = "#{from_column} TO #{to_column}"
+            end
           end
 
           query = "ALTER TABLE #{table} #{action} #{target} #{definition}"
@@ -37,6 +47,10 @@ module ShibuyaRecord
 
         def self.change_column(params)
           generate(params.merge({action: "CHANGE", target: "COLUMN"}))
+        end
+
+        def self.rename_column(params)
+          generate(params.merge({action: "RENAME", target: "COLUMN"}))
         end
       end
     end
