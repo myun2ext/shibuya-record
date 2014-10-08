@@ -25,7 +25,7 @@ module ShibuyaRecord
             when "ADD", "CHANGE"
               type = params[:column_type] || params[:type]
               definition = "#{column} #{type}"
-            when "REMOVE"
+            when "DROP"
               definition = "#{column}"
             when "RENAME"
               from_column = params[:from_column] || params[:from_column_name]
@@ -37,20 +37,21 @@ module ShibuyaRecord
           query = "ALTER TABLE #{table} #{action} #{target} #{definition}"
         end
 
-        def self.add_column(params)
-          generate(params.merge({action: "ADD", target: "COLUMN"}))
+        def self.add_column(table_name, params)
+          generate(params.merge({ table_name: table_name, action: "ADD", target: "COLUMN" }))
         end
 
-        def self.remove_column(params)
-          generate(params.merge({action: "REMOVE", target: "COLUMN"}))
+        def self.drop_column(table_name, params)
+          generate(params.merge({ table_name: table_name, action: "DROP", target: "COLUMN" }))
+        end
+        def self.remove_column(table_name, params); drop_column(table_name, params); end
+
+        def self.change_column(table_name, params)
+          generate(params.merge({ table_name: table_name, action: "CHANGE", target: "COLUMN" }))
         end
 
-        def self.change_column(params)
-          generate(params.merge({action: "CHANGE", target: "COLUMN"}))
-        end
-
-        def self.rename_column(params)
-          generate(params.merge({action: "RENAME", target: "COLUMN"}))
+        def self.rename_column(table_name, params)
+          generate(params.merge({ table_name: table_name, action: "RENAME", target: "COLUMN" }))
         end
       end
     end
