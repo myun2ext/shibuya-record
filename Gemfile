@@ -5,3 +5,10 @@ gemspec
 
 gem 'rspec'
 gem 'guard-rspec'
+
+# Database Drivers
+gem 'mysql2-cs-bind'
+gem 'pg'
+gem 'redis'
+gem 'mongo'
+gem 'dalli'
