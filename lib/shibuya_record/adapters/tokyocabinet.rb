@@ -5,6 +5,9 @@ module ShibuyaRecord
     class Tokyocabinet
       attr_reader :connection
 
+      def self.model
+        :kvs; end
+
       def initialize(params)
         @connection = create_connection(params)
       end

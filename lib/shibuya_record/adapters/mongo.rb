@@ -5,6 +5,9 @@ module ShibuyaRecord
     class Mongo
       attr_reader :connection
 
+      def self.model
+        :document; end
+
       def initialize(params)
         param_db_name = params.delete :database
         @connection = ShibuyaRecord::Adapters::Mongo.create_connection(params)

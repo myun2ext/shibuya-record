@@ -5,6 +5,9 @@ module ShibuyaRecord
     class Redis
       attr_reader :connection
 
+      def self.model
+        :kvs; end
+
       def initialize(params = {})
         @connection = ShibuyaRecord::Adapters::Redis.create_connection(params)
       end

@@ -5,6 +5,9 @@ module ShibuyaRecord
     class Dalli
       attr_reader :connection
 
+      def self.model
+        :kvs; end
+
       def initialize(params = nil)
         @connection = ShibuyaRecord::Adapters::Dalli.create_connection(params)
       end

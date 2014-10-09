@@ -5,6 +5,9 @@ module ShibuyaRecord
     class Mysql2CsBind
       attr_reader :connection
 
+      def self.model
+        :rdb; end
+
       def initialize(params)
         @connection = create_connection(params)
       end
