@@ -13,6 +13,12 @@ module ShibuyaRecord
         Redis.new(params)
       end
 
+      def read(key)
+        connection.get key; end
+
+      def write(key, value)
+        connection.set key, value; end
+
       def query(query_string, *params)
         connection.send(query_string, params)
       end
