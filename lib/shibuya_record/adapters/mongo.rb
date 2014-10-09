@@ -16,14 +16,26 @@ module ShibuyaRecord
       def database=(name)
         @db = connection.db(name)
       end
+      def database
+        @db
+      end
+
+      def collection(name)
+        db.collection(name)
+      end
+      alias table collection
+      alias coll collection
 
       def query(query_string, *params)
         connection.send(query_string, params)
       end
 
       def insert(table, values)
-        coll = db.collection(table)
-        coll.insert(values)
+        coll(table).insert(values)
+      end
+
+      def where(table, conditions)
+        coll(table).find(values)
       end
     end
   end
