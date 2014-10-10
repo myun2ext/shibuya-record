@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ShibuyaRecord::VERSION
   spec.authors       = ["myun2"]
   spec.email         = ["myun2@nwhite.info"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Shibuya Record is Simple O/R Mapper on Ruby.}
+  spec.description   = %q{Shibuya Record is Simple O/R Mapper on Ruby. Like Active Record and more simple and Lesser..}
   spec.homepage      = ""
   spec.license       = "MIT"
 
